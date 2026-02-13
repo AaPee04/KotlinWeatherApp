@@ -10,7 +10,9 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,16 +21,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 
-// 📁 ui/components/SearchBar.kt
-// Uudelleenkäytettävä hakukenttä.
-// Callback-funktiot (onQueryChange, onSearch) nostavat tapahtumien
-// käsittelyn ylemmälle tasolle (State Hoisting -periaate).
-
 @Composable
 fun SearchBar(
-    query: String,                    // Nykyinen hakuteksti
-    onQueryChange: (String) -> Unit,  // Kutsutaan kun teksti muuttuu
-    onSearch: () -> Unit              // Kutsutaan kun käyttäjä painaa "Hae"
+    query: String,
+    onQueryChange: (String) -> Unit,
+    onSearch: () -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -36,6 +33,7 @@ fun SearchBar(
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
+
         OutlinedTextField(
             value = query,
             onValueChange = onQueryChange,
@@ -43,15 +41,25 @@ fun SearchBar(
             modifier = Modifier.weight(1f),
             singleLine = true,
             keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Search    // Näppäimistön "Hae"-painike
+                imeAction = ImeAction.Search
             ),
             keyboardActions = KeyboardActions(
-                onSearch = { onSearch() }       // Enter = hae
+                onSearch = { onSearch() }
             )
         )
+
         Spacer(modifier = Modifier.width(8.dp))
-        Button(onClick = onSearch) {
-            Icon(Icons.Default.Search, "Hae")
+
+        Button(
+            onClick = onSearch,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.primary
+            )
+        ) {
+            Icon(
+                Icons.Default.Search,
+                contentDescription = "Hae"
+            )
         }
     }
 }

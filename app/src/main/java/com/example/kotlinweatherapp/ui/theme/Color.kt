@@ -2,10 +2,19 @@ package com.example.kotlinweatherapp.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+// 🖤 Taustat
+val GamerBlack = Color(0xFF050505)
+val GamerSurface = Color(0xFF111111)
+val GamerCard = Color(0xFF1C1C1C)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+// 🔴 Punaisten tasot
+val BloodRed = Color(0xFF8B0000)
+val CrimsonRed = Color(0xFFD50000)
+val NeonRed = Color(0xFFFF1744)
+
+// ⚡ Korostus
+val ElectricRed = Color(0xFFFF0033)
+
+// 🧊 Tekstit
+val GamerWhite = Color(0xFFFFFFFF)
+val GamerGray = Color(0xFFB0B0B0)
