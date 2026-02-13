@@ -16,8 +16,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.kotlinweatherapp.ui.screens.weather.WeatherScreen
 import com.example.kotlinweatherapp.ui.theme.KotlinWeatherAppTheme
 
-// 📁 MainActivity.kt
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,20 +29,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-}
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    KotlinWeatherAppTheme {
-        Greeting("Android")
     }
 }

@@ -34,7 +34,7 @@ fun SearchBar(
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-        OutlinedTextField(
+        OutlinedTextField( // Tekstikenttä
             value = query,
             onValueChange = onQueryChange,
             label = { Text("Kaupunki") },

@@ -43,9 +43,8 @@ fun WeatherContent(weather: WeatherResponse) {
         val iconUrl =
             "https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png"
 
-        // 🔥 GAMER ICON BADGE
         Box(
-            contentAlignment = Alignment.Center,
+            contentAlignment = Alignment.Center, // Kunnan nimi
             modifier = Modifier
                 .size(170.dp)
                 .shadow(35.dp, shape = CircleShape)
@@ -65,7 +64,7 @@ fun WeatherContent(weather: WeatherResponse) {
                 )
         ) {
             AsyncImage(
-                model = iconUrl,
+                model = iconUrl, // Säänkuva
                 contentDescription = "Sääkuvake",
                 modifier = Modifier.size(115.dp)
             )
@@ -73,9 +72,8 @@ fun WeatherContent(weather: WeatherResponse) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // 🔴 LÄMPÖTILA GLOW
         Text(
-            text = "${weather.main.temp.toInt()}°C",
+            text = "${weather.main.temp.toInt()}°C", // Lämpötila
             style = MaterialTheme.typography.displayLarge.copy(
                 color = MaterialTheme.colorScheme.primary,
                 shadow = Shadow(
@@ -88,7 +86,7 @@ fun WeatherContent(weather: WeatherResponse) {
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = weather.weather[0].description.replaceFirstChar { it.uppercase() },
+            text = weather.weather[0].description.replaceFirstChar { it.uppercase() }, // Sään tila
             style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.onBackground
         )
@@ -101,7 +99,7 @@ fun WeatherContent(weather: WeatherResponse) {
                 containerColor = MaterialTheme.colorScheme.surfaceVariant
             )
         ) {
-            Column(modifier = Modifier.padding(16.dp)) {
+            Column(modifier = Modifier.padding(16.dp)) { // tietojen listaus
 
                 WeatherDetailRow("Tuntuu kuin", "${weather.main.feels_like.toInt()}°C")
                 WeatherDetailRow(

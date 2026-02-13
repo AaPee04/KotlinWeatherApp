@@ -29,9 +29,8 @@ fun WeatherScreen(viewModel: WeatherViewModel = viewModel()) {
             .padding(top = 16.dp)
     ) {
 
-        // 🔥 OTSIKKO
         Text(
-            text = "SÄÄAPPI",
+            text = "SÄÄAPPI", // otsikko
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 8.dp),
@@ -46,8 +45,7 @@ fun WeatherScreen(viewModel: WeatherViewModel = viewModel()) {
             textAlign = androidx.compose.ui.text.style.TextAlign.Center
         )
 
-        // 🔎 HAKUKENTTÄ
-        SearchBar(
+        SearchBar( // Haku
             query = searchQuery,
             onQueryChange = { viewModel.onSearchQueryChange(it) },
             onSearch = { viewModel.searchWeather() }
@@ -69,7 +67,7 @@ fun WeatherScreen(viewModel: WeatherViewModel = viewModel()) {
             }
 
             is Result.Success -> {
-                WeatherContent(weather = state.data)
+                WeatherContent(weather = state.data) // WeatherContentin kutsu että voidaan täyttää kaupungin tiedot
             }
 
             is Result.Error -> {
