@@ -2,13 +2,10 @@ package com.example.kotlinweatherapp.ui.screens.weather
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kotlinweatherapp.data.local.AppDatabase
-import com.example.kotlinweatherapp.data.model.WeatherEntity
-import com.example.kotlinweatherapp.data.model.WeatherResponse
+import com.example.kotlinweatherapp.data.local.entity.WeatherEntity
 import com.example.kotlinweatherapp.data.repository.WeatherRepository
-import com.example.kotlinweatherapp.util.Result
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

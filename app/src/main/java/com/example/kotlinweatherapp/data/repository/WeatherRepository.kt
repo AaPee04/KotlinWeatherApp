@@ -1,17 +1,12 @@
 package com.example.kotlinweatherapp.data.repository
 
 import com.example.kotlinweatherapp.BuildConfig
-import com.example.kotlinweatherapp.data.local.SearchHistoryDao
-import com.example.kotlinweatherapp.data.local.WeatherDao
-import com.example.kotlinweatherapp.data.model.SearchHistoryEntity
-import com.example.kotlinweatherapp.data.model.WeatherEntity
-import com.example.kotlinweatherapp.data.model.WeatherResponse
+import com.example.kotlinweatherapp.data.local.dao.SearchHistoryDao
+import com.example.kotlinweatherapp.data.local.dao.WeatherDao
+import com.example.kotlinweatherapp.data.local.entity.SearchHistoryEntity
+import com.example.kotlinweatherapp.data.local.entity.WeatherEntity
 import com.example.kotlinweatherapp.data.remote.RetrofitClient
-import com.example.kotlinweatherapp.util.Result
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.firstOrNull
-import retrofit2.HttpException
-import java.io.IOException
 
 class WeatherRepository(
     private val weatherDao: WeatherDao,

@@ -1,5 +1,7 @@
 package com.example.kotlinweatherapp.data.model
 
+import com.example.kotlinweatherapp.data.local.entity.WeatherEntity
+
 fun WeatherEntity.toWeatherResponse(): WeatherResponse {
     return WeatherResponse(
         weather = listOf(

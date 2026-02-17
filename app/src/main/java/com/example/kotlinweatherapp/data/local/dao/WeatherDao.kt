@@ -1,8 +1,7 @@
-package com.example.kotlinweatherapp.data.local
+package com.example.kotlinweatherapp.data.local.dao
 
 import androidx.room.*
-import com.example.kotlinweatherapp.data.model.Weather
-import com.example.kotlinweatherapp.data.model.WeatherEntity
+import com.example.kotlinweatherapp.data.local.entity.WeatherEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

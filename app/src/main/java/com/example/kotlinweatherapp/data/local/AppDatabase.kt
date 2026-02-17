@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.kotlinweatherapp.data.model.WeatherEntity
-import com.example.kotlinweatherapp.data.model.SearchHistoryEntity
+import com.example.kotlinweatherapp.data.local.dao.SearchHistoryDao
+import com.example.kotlinweatherapp.data.local.dao.WeatherDao
+import com.example.kotlinweatherapp.data.local.entity.WeatherEntity
+import com.example.kotlinweatherapp.data.local.entity.SearchHistoryEntity
 
 @Database(
     entities = [

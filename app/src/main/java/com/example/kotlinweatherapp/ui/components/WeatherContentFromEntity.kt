@@ -1,7 +1,7 @@
 package com.example.kotlinweatherapp.ui.components
 
 import androidx.compose.runtime.Composable
-import com.example.kotlinweatherapp.data.model.WeatherEntity
+import com.example.kotlinweatherapp.data.local.entity.WeatherEntity
 import com.example.kotlinweatherapp.data.model.toWeatherResponse
 
 @Composable
