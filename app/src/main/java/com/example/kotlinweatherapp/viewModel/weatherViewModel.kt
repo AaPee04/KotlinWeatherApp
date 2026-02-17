@@ -1,4 +1,4 @@
-package com.example.kotlinweatherapp.ui.screens.weather
+package com.example.kotlinweatherapp.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class WeatherViewModel(
     application: Application
@@ -58,7 +59,7 @@ class WeatherViewModel(
                 repository.fetchWeatherIfNeeded(_searchQuery.value)
             } catch (e: Exception) {
 
-                if (e is retrofit2.HttpException && e.code() == 404) {
+                if (e is HttpException && e.code() == 404) {
                     _errorMessage.value = "Kaupunkia ei löytynyt"
                 } else {
                     _errorMessage.value = "Virhe haettaessa säätietoja"

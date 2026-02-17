@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kotlinweatherapp.ui.components.SearchBar
 import com.example.kotlinweatherapp.ui.components.WeatherContentFromEntity
+import com.example.kotlinweatherapp.viewModel.WeatherViewModel
 
 @Composable
 fun WeatherScreen(viewModel: WeatherViewModel = viewModel()) {
