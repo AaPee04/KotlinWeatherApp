@@ -1,36 +1,73 @@
 package com.example.kotlinweatherapp.ui.screens.weather
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.kotlinweatherapp.data.local.AppDatabase
+import com.example.kotlinweatherapp.data.model.WeatherEntity
 import com.example.kotlinweatherapp.data.model.WeatherResponse
 import com.example.kotlinweatherapp.data.repository.WeatherRepository
 import com.example.kotlinweatherapp.util.Result
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class WeatherViewModel(
-    private val repository: WeatherRepository = WeatherRepository()
-) : ViewModel() {
+    application: Application
+) : AndroidViewModel(application) {
 
-    private val _weatherState = MutableStateFlow<Result<WeatherResponse>?>(null)
-    val weatherState: StateFlow<Result<WeatherResponse>?> = _weatherState.asStateFlow()
+    private val database = AppDatabase.getDatabase(application)
+    private val repository = WeatherRepository(
+        weatherDao = database.weatherDao(),
+        historyDao = database.searchHistoryDao()
+    )
+
+    val searchHistory = repository.getSearchHistory()
 
     private val _searchQuery = MutableStateFlow("Helsinki")
-    val searchQuery: StateFlow<String> = _searchQuery.asStateFlow()
+
+    private val _errorMessage = MutableStateFlow<String?>(null)
+    val errorMessage: StateFlow<String?> = _errorMessage
+
+    val searchQuery = _searchQuery.asStateFlow()
+
+
+    val weather: StateFlow<WeatherEntity?> =
+        _searchQuery
+            .flatMapLatest { city ->
+                repository.getWeatherFromDb(city)
+            }
+            .stateIn(
+                viewModelScope,
+                SharingStarted.WhileSubscribed(5000),
+                null
+            )
 
     fun onSearchQueryChange(query: String) {
         _searchQuery.value = query
     }
 
     fun searchWeather() {
-        val city = _searchQuery.value
-        if (city.isBlank()) return
-
         viewModelScope.launch {
-            _weatherState.value = Result.Loading
-            _weatherState.value = repository.getWeather(city)
+
+            _errorMessage.value = null   // nollaa vanha virhe
+
+            try {
+                repository.fetchWeatherIfNeeded(_searchQuery.value)
+            } catch (e: Exception) {
+
+                if (e is retrofit2.HttpException && e.code() == 404) {
+                    _errorMessage.value = "Kaupunkia ei löytynyt"
+                } else {
+                    _errorMessage.value = "Virhe haettaessa säätietoja"
+                }
+            }
         }
     }
 }
+
