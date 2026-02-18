@@ -38,3 +38,6 @@ Projekti noudattaa MVVM mallia
 
 #### Välimuistinlogiikka
 Kaupungit tallenetaan välimuistiin, jos datan hausta on yli 30 minuuttia se hakee datan uudestaan APIsta. Jos ei ole olemassa olevaa dataa se haetaan APIsta. Muissa tapauksissa kuin näissä käytetään Roomissa olemassa olevaa dataa. Tämän lisäksi jokainen tehty haku tallennetaan hakuhistoriaan.
+
+#### Videolinkki
+https://www.youtube.com/watch?v=ON5VCmqOGJE
